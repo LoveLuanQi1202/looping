@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,inital-scale=1.0" />
+		<title>slide</title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				list-style: none;
+			}
+			
+			html,
+			body {
+				width: 100vw;
+				height: 100vh;
+				overflow: hidden;
+			}
+			
+			#carousel {
+				
+				position: relative;
+				width: 100vw;
+				height: 30vh;
+				background-color: red;
+			}
+			
+			.inner {
+				transition: left .3s;
+				position: absolute;
+				top: 0;
+				width: 300vw;
+				height: 30vh;
+			}
+			
+			.section {
+				float: left;
+				width: 100vw;
+				height: 30vh;
+			}
+			
+			img {
+				width: 100vw;
+				height: 30vh;
+				background-color: #FF0000;
+			}
+			#indicators{
+				width: 65px;
+				height: 15px;
+				position: absolute;
+				bottom: 10px;
+				left: 50%;
+				margin-left: -32.5px;
+				
+				z-index: 999;
+			}
+			#indicators li{
+				float: left;
+				width: 15px;
+				height: 15px;
+				border-radius:20px ;
+				background-color: rgba(0,0,0,0.5);
+			}
+			#indicators li:not(:last-child){
+				margin-right:10px ;
+			}
+			#indicators .active{
+				background-color: rgba(255,255,255,0.6);
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="carousel">
+			
+
+			<!-- Wrapper for slides -->
+			<ul class="inner" role="listbox">
+
+				<li class="section">
+					<img style="background-color: blue;">
+				</li>
+
+				<li class="section">
+					<img style="background-color: aquamarine;">
+				</li>
+				<li class="section">
+					<img style="background-color: blue;">
+				</li>
+			</ul>
+		</div>
+
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/slider.js"></script>
+	<script>
+		$("#carousel").myslider();
+	</script>
+
+</html>
