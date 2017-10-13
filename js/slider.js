@@ -1,7 +1,10 @@
 ;(function(root, factory, plugin) {
 	factory(root.Zepto, plugin)
 })(window, function($, plugin) {
-	
+	var __DEFAULTS__={
+		autoLoop:true,
+		loopTime:5000
+	};
 	var __PROTOTYPE__={
 			init:function(){
 				this.$carousel = $("#carousel"),
@@ -15,8 +18,8 @@
 				this.cleft=0,
 				this._dir,
 				this.cindex = 0,
-				this.total = this.$lis.length,
-				this.time=5000;
+				this.total = this.$lis.length;
+				
 			},
 			_xlh:function(){
 				this.$carousel.prepend("<ul id='indicators'></ul>");
@@ -32,10 +35,14 @@
 				this.$carousel.on("touchstart", this.startcb.bind(this));
 				this.$carousel.on("touchmove", this.movecb.bind(this));
 				this.$carousel.on("touchend", this.endcb.bind(this));
-				this.loop();
+				if(this.autoLoop){
+					this.loop();
+				}
 			},
 			startcb:function(e) {
-				clearInterval(this.interval);
+				if(this.autoLoop){
+					clearInterval(this.interval);
+				}
 				this.startX = e.touches[0].clientX;
 				this.cleft = this.$inner.offset().left;
 				this.cindex = Math.ceil(-this.cleft / this._vm);
@@ -66,11 +73,12 @@
 				} else {
 					_left = this.cleft;
 				}
-	
 				this.$inner.css({
 					left: _left + 'px'
 				});
-				this.loop();
+				if(this.autoLoop){
+					this.loop();
+				}
 			},
 			loop:function(){
 				this.interval = setInterval(function(){
@@ -89,22 +97,16 @@
 					}
 					
 					
-				}.bind(this),this.time);
+				}.bind(this),this.loopTime);
 			}
 			
 		}
 	
 	$.fn[plugin] = function(ops) {
-		$.extend(this,__PROTOTYPE__);
+		$.extend(this,__PROTOTYPE__,__DEFAULTS__,ops);
+		console.log(this);
 		this.init();
 		this._xlh();
 		this._bind();
-		
-		
-		
-		
-
-		
-		
 	}
 }, "myslider")
