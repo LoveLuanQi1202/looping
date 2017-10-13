@@ -1,5 +1,5 @@
 ;(function(root, factory, plugin) {
-	factory(root.jQuery, plugin)
+	factory(root.Zepto, plugin)
 })(window, function($, plugin) {
 	
 	var __PROTOTYPE__={
@@ -8,6 +8,7 @@
 				this.$inner = $("#carousel .inner"),
 				this.$lis = $("#carousel .inner li"),
 				this._vm = window.innerWidth,
+				this.slide = this._vm *0.3;
 				this.startX,
 				this.endX,
 				this.distX,
@@ -44,7 +45,6 @@
 				e.preventDefault();
 				this.distX = this.startX - this.endX;
 				this._dir = this.distX > 0 ? "L" : "R";
-	
 				if(this.cindex == 0 && this._dir == "R" || this.cindex == this.total - 1 && this._dir == "L") {
 					return;
 				}
@@ -55,12 +55,12 @@
 			endcb:function() {
 				var abs = Math.abs(this.distX),
 					_left;
-				if(abs > 150) {
+				if(abs > this.slide) {
 					if(this._dir == "L" && this.cindex != this.total - 1) {
-						_left = this.cleft - this._vm;
+						_left = -(this.cindex+1)*this._vm;
 						this.$indicate.eq(this.cindex+1).addClass("active").siblings().removeClass("active");
 					} else if(this._dir == "R" && this.cindex != 0) {
-						_left = this.cleft + this._vm;
+						_left = -(this.cindex-1)*this._vm;
 						this.$indicate.eq(this.cindex-1).addClass("active").siblings().removeClass("active");
 					}
 				} else {
