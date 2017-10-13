@@ -41,6 +41,7 @@
 			},
 			movecb:function (e) {
 				this.endX = e.touches[0].clientX;
+				e.preventDefault();
 				this.distX = this.startX - this.endX;
 				this._dir = this.distX > 0 ? "L" : "R";
 	
