@@ -30,13 +30,15 @@
 			}
 			
 			.inner {
-				transition: left .3s;
+				
 				position: absolute;
 				top: 0;
 				width: 300vw;
 				height: 30vh;
 			}
-			
+			.animate1{
+				transition:transform 0.5s;
+			}
 			.section {
 				float: left;
 				width: 100vw;
@@ -80,29 +82,28 @@
 			
 
 			<!-- Wrapper for slides -->
-			<ul class="inner" role="listbox">
-
+			<ul class="inner " role="listbox">
 				<li class="section">
-					<img style="background-color: blue;">
+					<img src="img/3.jpg">
+				</li>
+				<li class="section">
+					<img src="img/1.png">
 				</li>
 
 				<li class="section">
-					<img style="background-color: aquamarine;">
+					<img src="img/2.jpg">
 				</li>
-				<li class="section">
-					<img style="background-color: blue;">
-				</li>
+				
 			</ul>
 		</div>
 
 	</body>
 	<!--<script src="js/jquery-3.2.1.min.js"></script>-->
-	<script src="js/zepto.js"></script>
-	<script src="js/slider.js"></script>
+	<script src="js/zepto.min.js"></script>
+ 
+	<script src="js/slider1.js"></script>
 	<script>
-		$("#carousel").myslider({
-			autoLoop:false
-		});
+		$("#carousel").myslider();
 	</script>
 
 </html>
